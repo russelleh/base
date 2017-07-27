@@ -1,0 +1,17 @@
+* {
+  font-size: 1.5vw;
+}
+
+body {
+  font-family: monospace;
+  text-align: center;
+  margin-top: 20vh;
+}
+
+table {
+  margin: 0 auto;
+}
+
+noscript {
+  color: red;
+}
