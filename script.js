@@ -1,52 +1,27 @@
-const base_data = {
-  "2":  "01".split(''),
-  "16": "0123456789ABCDEF".split(''),
-  "32": "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567".split(''),
-  "64": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".split(''),
-};
+var base_write = function(base, bits) {
+  var element = document.getElementById("base-" + base);
+  element.innerHTML = bits.toString(base).toUpperCase();
 
-var generate = function(bitlen) {
-  var str = "";
-  while (str.length < bitlen) {
-    str += Math.floor(Math.random() * 2);
+  var target = Math.ceil(32 / Math.log2(base));
+  while (element.innerHTML.length < target) {
+    element.innerHTML = '0' + element.innerHTML;
   }
-  return str;
 };
 
-var base_encode = function(base, bits, bits_length) {
-  var chunk_length = Math.ceil(Math.log(base) / Math.log(2));
-  var out          = [];
-  var overhead     = (2 ** chunk_length) - base;
-  var buffer       = 0;
+var write = function(bits) {
+  base_write(10, bits);
 
-  while (bits.length > 0) {
-    var chunk = bits.slice(0, chunk_length);
-    var bits  = bits.slice(chunk_length, bits.length);
-
-    var chunk_val = parseInt(chunk, 2);
-    out.push(base_data[base][chunk_val]);
-  }
-  return out.join('');
+  base_write(16, bits);
+  base_write(4,  bits);
+  base_write(2,  bits);
 };
-
-var base_write = function(base, bits, bits_length) {
-  var el = document.getElementById("base-" + base);
-  el.innerHTML = base_encode(base, bits, bits_length);
-  el.style["font-size"] = Math.log2(base) + "em";
-}
-
-var write = function() {
-  var bitlen = 60;
-  var bitstr = generate(bitlen);
-  document.getElementById("base-2").innerHTML = bitstr;
-  base_write(16, bitstr, bitlen);
-  base_write(32, bitstr, bitlen);
-  base_write(64, bitstr, bitlen);
-}
 
 document.addEventListener('DOMContentLoaded', function(){ 
-  write();
-  document.addEventListener("click", function(e) {
-    write();
-  }, false);
+  var bits = Math.floor(Math.random() * Math.pow(2, 32));
+  write(bits);
+  setInterval(function() {
+    bits += 1;
+    bits %= Math.pow(2, 32);
+    write(bits);
+  }, 1000);
 }, false);

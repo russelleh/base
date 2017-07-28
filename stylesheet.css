@@ -1,17 +1,55 @@
 * {
-  font-size: 1.5vw;
+  line-height: 1em;
+  text-align:  right;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 body {
-  font-family: monospace;
-  text-align: center;
-  margin-top: 20vh;
+  font-family: Source Code Pro, monospace;
+  margin-top:  4em;
 }
 
 table {
   margin: 0 auto;
 }
 
+td {
+  margin-left: 2em;
+}
+
 noscript {
   color: red;
+}
+
+.identifier {
+  padding-right: 1em;
+  color:         grey;
+}
+
+#base-10-container {
+  margin-bottom: 2em;
+}
+
+#base-10 {
+  font-size:   3.32em;
+  font-weight: 200;
+}
+
+#base-16 {
+  font-size:   4em;
+  font-weight: 200;
+}
+
+#base-4 {
+  font-size:   2em;
+  font-weight: 300;
+}
+
+#base-2 {
+  font-size:   1em;
+  font-weight: 400;
 }
