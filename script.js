@@ -16,8 +16,8 @@ var write = function(bits) {
   base_write(2,  bits);
 };
 
-document.addEventListener('DOMContentLoaded', function(){ 
-  var bits = Math.floor(Math.random() * Math.pow(2, 32));
+document.addEventListener('DOMContentLoaded', function() {
+  var bits = 0;
   write(bits);
   setInterval(function() {
     bits += 1;
